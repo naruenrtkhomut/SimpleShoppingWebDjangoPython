@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <div class="jumbotron-fluid text-secondary" align="center">
+        <h1 class="display-4">User and Password tracking order</h1>
+        <form class="form-group" action="/Tracking/Track/User/" method="POST">
+            {% csrf_token %}
+            <label>Username :</label>
+            <input type="text" name="UserName" placeholder="username..."><br>
+            <label>Password : </label>
+            <input type="password" name="Password" placeholder="password..."><br>
+            <button class="btn btn-success" type="submit">Track</button>
+        </form>
+    </div>
+{% endblock %}

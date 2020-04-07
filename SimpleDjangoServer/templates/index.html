@@ -1,0 +1,41 @@
+﻿{% extends "layout.html" %}
+{% block content %}
+<div align="center" class="jumbotron text-info">
+    <h1 class="display-4">Lastest update</h1>
+    <div class="row">
+        {% for key, value in LatestOrderList.items %}
+            <div class="col-sm-3" align="center" style="border: 1px solid #008ae6;">
+                <div>{{ value.OrderName }}</div>
+                <img src="{{ value.pic }}" alt="{{ value.OrderName }}" width="60%">
+                <form class="form-group" action="/GetOrder">
+                    <label>{{ value.cost }} Baht</label>
+                    <button type="submit" name="GetYourOrder" class="btn btn-success" value="{{ key }}">Buy</button>
+                </form>
+                <div>{{ value.Spec1 }}</div>
+                <div>{{ value.Spec2 }}</div>
+                <div>{{ value.Spec3 }}</div>
+                <div>{{ value.Spec4 }}</div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+<div align="center" class="jumbotron text-danger">
+    <h1 class="display-4">Hot order update</h1>
+    <div class="row">
+        {% for key, value in HotestOrderList.items %}
+            <div class="col-sm-3" align="center" style="border: 1px solid red;">
+                <div>{{ value.OrderName }}</div>
+                <img src="{{ value.pic }}" alt="value.OrderName" width="60%">
+                <form class="form-group" action="/GetOrder">
+                    <label>{{ value.cost }} Baht</label>
+                    <button type="submit" name="GetYourOrder" class="btn btn-success" value="{{ key }}">Buy</button>
+                </form>
+                <div>{{ value.Spec1 }}</div>
+                <div>{{ value.Spec2 }}</div>
+                <div>{{ value.Spec3 }}</div>
+                <div>{{ value.Spec4 }}</div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

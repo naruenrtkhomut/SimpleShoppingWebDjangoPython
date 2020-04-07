@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div align="center" class="jumbotron text-danger">
+    <h1 class="display-4">{{ ModelTYpeValue[ModelType] }}</h1>
+    <div class="row">
+        {% for Order_tmp in Order %}
+            <div class="col-sm-3" align="center" style="border: 1px solid red;">
+                <div>{{ OrderData[Order_tmp]['OrderName'] }}</div>
+                <img src="{{ OrderData[Order_tmp]['pic'] }}" alt="OrderData[Order_tmp]['OrderName']" width="60%">
+                <form class="form-group" action="/GetOrder">
+                    <label>{{ OrderData[Order_tmp]["Cost"] }} Baht</label>
+                    <button type="submit" name="GetYourOrder" class="btn btn-success" value="{{ Order_tmp }}">Buy</button>
+                </form>
+                <div>{{ OrderData[Order_tmp]['Spec1'] }}</div>
+                <div>{{ OrderData[Order_tmp]['Spec2'] }}</div>
+                <div>{{ OrderData[Order_tmp]['Spec3'] }}</div>
+                <div>{{ OrderData[Order_tmp]['Spec4'] }}</div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

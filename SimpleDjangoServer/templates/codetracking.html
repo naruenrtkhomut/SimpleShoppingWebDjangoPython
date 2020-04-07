@@ -1,0 +1,11 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <div align="center" class="jumbotron-fluid text-secondary">
+        <h1 class="display-4">Order code tracking order</h1>
+        <form class="form-group" action="/Tracking/Track/Code">
+            <label>Order code : </label>
+            <input type="text" name="OrderCode" placeholder="order code...">
+            <button class="btn btn-success">Track</button>
+        </form>
+    </div>
+{% endblock %}

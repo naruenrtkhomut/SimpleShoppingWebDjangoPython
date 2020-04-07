@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>Home.com</title>
+  </head>
+</head>
+<body>
+    <div class="navbar navbar-inverse text-light" style="background-color: #2d5986;">
+        <h1 class="navbar-brand"><a href="/" class="text-light nav-link">Home</a></h1>
+        <div class="item-group nav navbar-right">
+            <ul class="nav nav-bar-rigt item-group">
+                <li><a class="nav-link text-light" href="/About">About</a></li>
+                <li><a class="nav-link text-light" href="/Contact">Contact</a></li>
+                <li><a class="nav-link text-light" href="/Payment">Payment</a></li>
+                <li><a class="nav-link text-light" href="/Tracking">Tracking</a></li>
+                <li><a class="nav-link text-light" href="/GetOrder">Order</a></li>
+            </ul>
+            <div>
+            <form class="input-group" action="/Order/Search">
+                <input type="search" name="q" placeholder="Search">
+                <button class="btn btn-info">Search</button>
+            </form>
+            </div>
+        </div>
+    </div>
+    <form class="item-group" action="/Order/Model/">
+        <input type="hidden" name="ModelType" value="{{ ModelType }}"/>
+        {% for value in ModelTypeList %}
+            {% for k, v in ModelNameList.items %}
+                {% if value == k %}
+                    <button class="btn btn-info" type="submit" name="ModelName" value="{{value}}">{{ v }}</button>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    </form>
+<div align="center" class="jumbotron text-danger">
+    <h1 class="display-4">{{ ModelNameValue }}</h1>
+    <div class="row">
+        {% for key, value in Order.items %}
+            {% if value.ModelName == ModelName %}
+                <div class="col-sm-3" align="center" style="border: 1px solid red;">
+                <div>{{ value.OrderName }}</div>
+                <img src="{{ value.pic }}" alt="value.OrderName" width="60%">
+                <form class="form-group" action="/GetOrder">
+                    <label>{{ value.cost }} Baht</label>
+                    <button type="submit" name="GetYourOrder" class="btn btn-success" value="{{ key }}">Buy</button>
+                </form>
+                <div>{{ value.Spec1 }}</div>
+                <div>{{ value.Spec2 }}</div>
+                <div>{{ value.Spec3 }}</div>
+                <div>{{ value.Spec4 }}</div>
+            </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+    <div class="jumbotron"> 
+      <div class="row">
+        <div class="col-sm-3 display-4 text-info">Home.com</div>
+        <div class="col-sm-6 item-group">
+          <div class="row">
+            <div class="text-info" style="height: max-content; margin: 2%; font-size: larger;">Stay Online</div>
+            {% for key, value in Social.items %}
+            <img src="{{ value.Pic }}" alt="{{ value }}" width="10%" onclick="SocialHandle('{{ value.Link }}')">
+            {% endfor %}
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="row">
+            <a href="/About" class="nav-link">About</a>
+            <a href="/Payment" class="nav-link">Payment</a>
+            <a href="/Tracking" class="nav-link">Tracking</a>
+            <a href="/GetOrder" class="nav-link">Order</a>
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script>
+      function SocialHandle(SocialLink)
+      {
+        window.location.assign(SocialLink);
+      }
+    </script>
+    </div>
+</body>
+</html>

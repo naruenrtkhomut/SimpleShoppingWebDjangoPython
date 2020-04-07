@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="jumbotron" align="center">
+    <h1 class="display-4 text-info">Stay online</h1>
+    {% for key, value in Social.items %}
+    <div>
+        <div class="d-inline p-2 text-info">{{ value.Name }}</div>
+        <div class="d-inline p-2 text-info"><img src="{{ value.Pic }}" alt="{{ value.Name }}" width="2.5%" onclick="SocialHandle('{{ value.Link }}')"></div>
+    </div>
+    {% endfor %}
+    <h1 class="display-4 text-info">Phone number</h1>
+    {% for key, value in PhoneNumber.items %}
+        <div>
+            <div class="d-inline p-4 text-info">{{ value.name }}</div>
+            <div class="d-inline p-4 text-info">0{{ key }}</div>
+        </div>
+    {% endfor %}
+    </div>
+</div>
+{% endblock %}
